@@ -11,11 +11,16 @@
        
 
     // load all the results
-    $sql = "SELECT * FROM results";
+    $sql = "SELECT 
+    results.*,
+    users.name,
+    users.email
+    FROM results
+    JOIN users
+    ON results.user_id = users.id";
     $query = $database->prepare( $sql );
-    $query ->execute();
+    $query->execute();
     $results = $query->fetchAll();
-
     require 'parts/header.php';
 ?>
 <div class="container mx-auto my-5" style="max-width: 700px;">
